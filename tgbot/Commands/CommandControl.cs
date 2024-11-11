@@ -1,33 +1,29 @@
 ﻿using Telegram.Bot;
 using Telegram.Bot.Types;
-using System.Threading;
-using System.Threading.Tasks;
+using TelegramBot.comands;
 
-namespace TelegramBot
+public class CommandControl
 {
-    public class CommandControl
+    private readonly Dictionary<string, ICommand> _commands;
+
+    public CommandControl()
     {
-        public async Task HandleCommand(string command, Message message, ITelegramBotClient botClient, CancellationToken cancellationToken)
+        _commands = new Dictionary<string, ICommand>
         {
-            switch (command)
-            {
-                case "/start":
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "Бот запущен!", cancellationToken: cancellationToken);
-                    break;
-                
-                case "/help":
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "Список доступных команд:\n/start - начать работу с ботом\n/help - получить помощь\n/time - текущее время", cancellationToken: cancellationToken);
-                    break;
+            { "/start", new StartCommand() },
+            { "/help", new HelpCommand() }
+        };
+    }
 
-                case "/time":
-                    string currentTime = DateTime.Now.ToString("HH:mm:ss");
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: $"Текущее время: {currentTime}", cancellationToken: cancellationToken);
-                    break;
-
-                default:
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "Такой команды нет, используйте команду /help", cancellationToken: cancellationToken);
-                    break;
-            }
+    public async Task HandleCommand(string commandText, ITelegramBotClient botClient, Message message, CancellationToken cancellationToken)
+    {
+        if (_commands.TryGetValue(commandText, out ICommand command))
+        {
+            await command.Execute(botClient, message, cancellationToken);
+        }
+        else
+        {
+            await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "Неизвестная команда. Используйте /help.", cancellationToken: cancellationToken);
         }
     }
 }

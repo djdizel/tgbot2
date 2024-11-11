@@ -35,14 +35,14 @@ class Program
         cancellationTokenSource.Cancel();
     }
 
-    static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+    static async Task HandleUpdateAsync(ITelegramBotClient botClient,Update update, CancellationToken cancellationToken)
     {
         if (update.Type == UpdateType.Message && update.Message?.Text != null)
         {
             var commandHandler = new CommandControl();
             string messageText = update.Message.Text;
 
-            await commandHandler.HandleCommand(messageText.Split(' ')[0], update.Message, botClient, cancellationToken);
+            await commandHandler.HandleCommand(messageText.Split(' ')[0],botClient, update.Message, cancellationToken);
         }
     }
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repos\\tgbot\\tgbot\\tgbot.csproj": {}
+    "D:\\repos\\tgbot2\\tgbot\\tgbot.csproj": {}
   },
   "projects": {
-    "D:\\repos\\tgbot\\tgbot\\tgbot.csproj": {
+    "D:\\repos\\tgbot2\\tgbot\\tgbot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repos\\tgbot\\tgbot\\tgbot.csproj",
+        "projectUniqueName": "D:\\repos\\tgbot2\\tgbot\\tgbot.csproj",
         "projectName": "tgbot",
-        "projectPath": "D:\\repos\\tgbot\\tgbot\\tgbot.csproj",
+        "projectPath": "D:\\repos\\tgbot2\\tgbot\\tgbot.csproj",
         "packagesPath": "C:\\Users\\yarmi\\.nuget\\packages\\",
-        "outputPath": "D:\\repos\\tgbot\\tgbot\\obj\\",
+        "outputPath": "D:\\repos\\tgbot2\\tgbot\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yarmi\\AppData\\Roaming\\NuGet\\NuGet.Config"
